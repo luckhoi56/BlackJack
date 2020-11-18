@@ -3,13 +3,50 @@
         Name: <input type="text" id="nameInput" name="searchText"/>
         <button></button>
         <input id="submit" type="submit" value="Submit">
+
+        <div id ="div1"></div>
     </body>
 </html>
 
 <script>
     document.getElementById("submit").addEventListener("click", getPokemon)
     function getPokemon(){
+        //data holder
+        var m_data = {
+            "id":"",
+            "name":"",
+            "base_experience":"",
+            "height":""         
+        }
         m_name = document.getElementById('nameInput').value
         console.log(m_name)
+        var m_url = `https://pokeapi.co/api/v1/pokemon/${m_name}`
+        
+        //fetch("https://pokeapi.co/api/v2/pokemon/ditto",{mode:'no-cors',}).then(response => response.json()).then(data=>console.log(data))
+         fetch(`https://pokeapi.co/api/v2/pokemon/${m_name}`).then(response => response.json()).then(data=>
+        {
+            console.log(data)
+            m_data.id = data.id
+            m_data.name = data.name
+            m_data.base_experience = data.base_experience
+            m_data.height = data.height
+            display(m_data)
+            changeBody(m_data)
+        })
+        
+        
+
+    }
+    function display(m_data){
+        console.log(m_data.id)
+    }
+
+    function changeBody(m_data){
+        var para = document.createElement("p")
+        var node = document.createTextNode(`${m_data.id}`)
+        para.appendChild(node)
+
+        var element = document.getElementById("div1");
+        element.appendChild(para);
     }
 </script>
