@@ -1,0 +1,15 @@
+<html>
+    <body>
+        Name: <input type="text" id="nameInput" name="searchText"/>
+        <button></button>
+        <input id="submit" type="submit" value="Submit">
+    </body>
+</html>
+
+<script>
+    document.getElementById("submit").addEventListener("click", getPokemon)
+    function getPokemon(){
+        m_name = document.getElementById('nameInput').value
+        console.log(m_name)
+    }
+</script>

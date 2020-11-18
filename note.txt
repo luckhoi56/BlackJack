@@ -1,0 +1,63 @@
+- you can get free certification, as long as you pass that certification.
+
+andrew qc guy, you can email him as well: andrew.crenwelge@revature.com
+
+
+to invoke function immediately
+
+(function(){
+
+}) ()
+
+
+
+var f = outerFunction() // f() calls result, which is the innter function
+
+var f = outerFunction // f() call outerFunction
+
+
+What is AJAX?
+Javascript technique for communicating with web services
+-stands for "Async Javascript and XML"
+-does not really need xml, can use plain text or json
+-provide the base functionalify for js scripts that need to use rest services
+
+-event based, ajax ins asynchronous
+
+*ajax has ready state indicates the status of the request, also contains the status code of the response.
+
+AJAX: Common steps to send an XHR
+
+1. create the XHR object
+
+2. set the onreadystatechange function:
+    xhr.onreadystatechange = function(){
+        if (xhr.readyState == 4){
+            /*do stuff*/
+        }
+    }
+3.set header if necessary:
+    xhr.setRequestHeader("Content-Type","application/json")
+4.open the request
+    xhr.open("POST","http://website.com/people/",true)
+5. send the request, with a body applicable
+    xhr.send(JSON.stringify(bodyObject))
+
+AJAX ready states:
+
+0: unsent - object created but has not been opened
+
+1:oepene
+2:headers_recevied: send() is called and the request headers_recevied
+3.loading: request being processed
+4.
+
+
+https://pokeapi.co/
+
+
+A simpler way: the fetch api
+-the fetch api simplifies the request
+-instead, the fetch api and its fetch() make use of promises
+
+fetch('http://example.com/movies.json').then(response =>response.json())
