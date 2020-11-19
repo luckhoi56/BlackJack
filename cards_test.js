@@ -1,11 +1,12 @@
 
     //const fetch = require("node-fetch");
-    var players = [
-                {
-                    "dealer":0,
-                    "A": 0
-                }
-                ]
+    var players = 
+                [
+                    {"count":0,"hands":[]},
+                    {"count":0,"hands":[]}
+
+]
+                
     
     
     
@@ -24,12 +25,57 @@
         var m_cards = []
         var card_count = count
         fetch(`https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=${card_count}`).then(reponse=>reponse.json()).then(data=>{
-            //console.log(data)
-            for(let i = 0; i < data.length; i++){
-                m_cards.push(data.cards[i])
-            }
+            
+            data.cards.forEach(card=>{
+                console.log(card)
+                m_cards.push(card)
+                /*
+                et i = 0; i < data.length; i++){
+                console.log(data.cards[i])
+                
+                */
+            });
+            distribute(deckID,m_cards)
             
         })
         
     }
 
+    function distribute(deckID,cards){
+        
+        players.dealer.count = 2
+        players.dealer.hands.push(cards[0])
+        players.dealer.hands.push(cards[1])
+
+        players.user.count = 2
+        players.user.hands.push(cards[2])
+        players.user.hands.push(cards[3])
+        console.log(players.dealer.hands[0].value)
+        console.log(players.user.hands[0].value)
+        render(players)
+    }
+
+    function render(players){
+        for(i=0;i<players.length;i++)
+        {
+            if(i==0)
+            {
+               var dealer = document.getElementById("dealer")
+        dealer.innerHTML
+        faceUpD = document.createElement("img")
+        faceUpD.src = players[0].hands[0].images.png
+        dealer.appendChild(faceUpD)  
+            }
+            if(i==1)
+            {
+                var player = document.getElementById("player")
+                player.innerHTML
+                faceUpP = document.createElement("img")
+                faceUpP.src = players[1].hands[0].images.png
+                player.appendChild(faceUpP)  
+            }
+        }
+       
+    }
+
+//fetchDeck()
