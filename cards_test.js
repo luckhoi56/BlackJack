@@ -16,7 +16,7 @@
         
         deckID = data.deck_id
         console.log("Deck id " + deckID)
-        drawCard(deckID,4)
+        drawCard(deckID,players.length *2)
     })
     }
     
@@ -43,15 +43,15 @@
 
     function distribute(deckID,cards){
         
-        players.dealer.count = 2
-        players.dealer.hands.push(cards[0])
-        players.dealer.hands.push(cards[1])
+        players[0].count = 2
+        players[0].hands.push(cards[0])
+        players[0].hands.push(cards[1])
 
-        players.user.count = 2
-        players.user.hands.push(cards[2])
-        players.user.hands.push(cards[3])
-        console.log(players.dealer.hands[0].value)
-        console.log(players.user.hands[0].value)
+        players[1].count = 2
+        players[1].hands.push(cards[2])
+        players[1].hands.push(cards[3])
+        console.log(players[0].hands[0].value)
+        console.log(players[1].hands[0].value)
         render(players)
     }
 
