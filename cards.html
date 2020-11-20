@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 
-    <button onclick="fetchDeck()" id="startButton">Start</button>
+    <button onclick="runGame()" id="startButton">Start</button>
     <div id="table">
         
     
@@ -16,24 +16,20 @@
         <div class="container">
             <div id ="dealer"class="row">
               
-              <div class="col">
-                Dealer
-              </div>
+              
             </div>
             <hr>
-            <div class="row">
+            <div id ='player' class="row">
               
-                <div id="player"class="col">
-                  Other player
-                </div>
+                
               </div>
               <hr>
             <div id="user"class="row">
               
-              <div class="col">
-                User
-              </div>
+              
             </div>
+            <button id='hit' onclick='hit(players[0])'>Hit</button>
+            <button id='stay' onclick="toStay()">Stay</button>
           </div>
           <hr>
     
