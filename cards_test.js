@@ -1,11 +1,12 @@
     var deckID;
     //const fetch = require("node-fetch");
-    var stay= false;
-    var done =false;
+    var stay= false;// when you hit the stay button
+    var done =false; //
     var players = 
                 [
                     {"value":0,"hands":[]},
                     {"value":0,"hands":[]}
+                    // ,{"value":0,"hands":[]}
                 ]
                 
     
@@ -13,6 +14,7 @@
     
     async function runGame()
     {   
+        reset()
         let response = await fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=6")
         let data = await response.json();
         deckID = data.deck_id;
@@ -34,8 +36,8 @@
             max= Math.max.apply(Math,players.map(function(player){return player.value}))
             console.log(max);
             done  = (players[0].value>=21||stay)&&(max>=21||players[1].value>=17);
-            console.log('me: '+players[0].value);
-            console.log('dealer: '+players[1].value);
+            // console.log('me: '+players[0].value);
+            // console.log('dealer: '+players[1].value);
             
             if(stay && players[1].value<17)
             {
@@ -51,8 +53,9 @@
 
                 if(players[1].value>21) alert('You Win')
                 
-                else if(players[0]==max) alert('You Win');
+                else if(players[0].value==max|| players[0].value==21) alert('You Win');
                 else alert('You Lose');
+                reset();
             }
         }
         
@@ -113,7 +116,7 @@
             }
             else if(i==1)
             {
-                for(let k=1;k<players[1].hands.length;k++)
+                for(let k=stay?0:1;k<players[1].hands.length;k++)
                 {
                     let faceUpD = document.createElement("img")
                     faceUpD.src = players[1].hands[k].images.png
@@ -131,6 +134,22 @@
             }
         }
        
+    }
+    function reset()
+    {
+        user.innerHTML ='<div class="col">User</div>';
+        dealer.innerHTML ='<div class="col">Dealer</div>';
+        player.innerHTML ='<div class="col">Other player</div>';
+        players = 
+                [
+                    {"value":0,"hands":[]},
+                    {"value":0,"hands":[]}
+                                        // ,{"value":0,"hands":[]}
+                ]
+     deckID ="";
+    //const fetch = require("node-fetch");
+     stay= false;
+     done =false;
     }
     function toStay()
     {
